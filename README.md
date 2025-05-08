@@ -10,10 +10,10 @@ Install SFV tools.
 wget https://fordi.github.io/update-repo/update-repo.sh -qO - | bash /dev/stdin install Fordi/sfv-tools
 ```
 
-The latter will clone the repo to /opt/sfv-tools and both will symlink the commands to /usr/local/bin, so to update later:
+This will install [update-repo](https://github.com/Fordi/update-repo), clone the repo to ~/.repos/sfv-tools, and symlink the commands in `./bin` to your personal executables folder, so to update later:
 
 ```bash
-update-repo Fordi/sfv-tools
+update-repo u Fordi/sfv-tools
 ```
 
 ## make-sfv
