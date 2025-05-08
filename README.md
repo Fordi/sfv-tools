@@ -1,6 +1,6 @@
 # SFV Tools
 
-A pair of simple tools for making / validating SFV files.
+A pair of simple Linux CLI tools for making / validating SFV files.
 
 ## make-sfv
 
