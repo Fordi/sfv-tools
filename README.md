@@ -17,7 +17,7 @@ sudo ./update-sfv-tools
 - Run the installer from github as a one-liner
 
 ```bash
-wget https://raw.githubusercontent.com/Fordi/sfv-tools/refs/heads/main/update-sfv-tools | sudo bash
+wget https://raw.githubusercontent.com/Fordi/sfv-tools/refs/heads/main/update-sfv-tools -qO - | sudo bash
 ```
 
 The latter will clone the repo to /opt/sfv-tools and both will symlink the commands to /usr/local/bin, so to update later:
