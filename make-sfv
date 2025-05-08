@@ -1,0 +1,16 @@
+#!/bin/bash
+CRC32="$(dirname "$(realpath "$0")")/crc32.py"
+
+if [[ "${#}" == "0" ]]; then
+  echo "$(basename "$0") {...files} [> sfv file]" >&2
+  exit -1
+fi
+
+
+SELF="$(basename "$0")"
+NOW="$(date +"%Y-%m-%dT%H:%M:%S%z")"
+echo "; Generated at $NOW by $USER with $SELF (compatible; by https://github.com/Fordi)"
+echo ";"
+for i in "${@}"; do
+  echo "$i $(python3 "$CRC32" < "$i")";
+done

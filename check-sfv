@@ -1,0 +1,25 @@
+#!/bin/bash
+CRC32="$(dirname "$(realpath "$0")")/crc32.py"
+
+SFVFile="$1"; shift;
+if [[ -z "$SFVFile" ]]; then
+  echo "$(basename "$0") {sfv file}" >&2
+  exit -1
+fi
+OK=true
+
+while read line; do
+  FILE="$(echo "$line" | rev | cut -d ' ' -f 2- | rev)"
+  SUM="$(echo "$line" | rev | cut -d ' ' -f 1 | rev | tr '[:upper:]' '[:lower:]')"
+  CHECK="$(python3 "$CRC32" < "$FILE")"
+  if [[ "$CHECK" != "$SUM" ]]; then
+    echo "$FILE: Failed! ($SUM != $CHECK)" >&2
+    OK=false
+  fi
+done < <(cat "$SFVFile" | tr -d '\r' | grep -Ev '^[[:space:]]*;|^[[:space:]]*$')
+
+if [[ "$OK" != true ]]; then
+  exit -1
+else
+  echo "$SFVFile OK!" >&2
+fi
