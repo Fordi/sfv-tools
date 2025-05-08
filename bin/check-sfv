@@ -1,5 +1,5 @@
 #!/bin/bash
-CRC32="$(dirname "$(realpath "$0")")/crc32.py"
+CRC32="$(dirname "$(realpath "$0")")/../lib/crc32.py"
 
 SFVFile="$1"; shift;
 if [[ -z "$SFVFile" ]]; then

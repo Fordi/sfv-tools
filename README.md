@@ -9,7 +9,7 @@ Install SFV tools.  You have two options:
 - Clone this repo and run `update-sfv-tools`
 
 ```bash
-git clone https://github.com/Fordi/sfv-tools.git
+git clone https://github.com/Fordi/sfv-tools
 cd sfv-tools
 sudo ./update-sfv-tools
 ```
@@ -17,13 +17,14 @@ sudo ./update-sfv-tools
 - Run the installer from github as a one-liner
 
 ```bash
-wget https://raw.githubusercontent.com/Fordi/sfv-tools/refs/heads/main/update-sfv-tools -qO - | sudo bash
+wget https://fordi.github.io/update-repo/update-repo.sh -qO - | sudo bash
+sudo update-repo https://github.com/Fordi/sfv-tools
 ```
 
 The latter will clone the repo to /opt/sfv-tools and both will symlink the commands to /usr/local/bin, so to update later:
 
 ```bash
-sudo update-sfv-tools
+sudo update-repo https://github.com/Fordi/sfv-tools
 ```
 
 ## make-sfv

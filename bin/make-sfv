@@ -1,5 +1,5 @@
 #!/bin/bash
-CRC32="$(dirname "$(realpath "$0")")/crc32.py"
+CRC32="$(dirname "$(realpath "$0")")/../lib/crc32.py"
 
 if [[ "${#}" == "0" ]]; then
   echo "$(basename "$0") {...files} [> sfv file]" >&2
