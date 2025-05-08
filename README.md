@@ -4,27 +4,16 @@ A pair of simple Linux CLI tools for making / validating SFV files.
 
 ## Installation
 
-Install SFV tools.  You have two options:
-
-- Clone this repo and run `update-sfv-tools`
+Install SFV tools.
 
 ```bash
-git clone https://github.com/Fordi/sfv-tools
-cd sfv-tools
-sudo ./update-sfv-tools
-```
-
-- Run the installer from github as a one-liner
-
-```bash
-wget https://fordi.github.io/update-repo/update-repo.sh -qO - | sudo bash
-sudo update-repo https://github.com/Fordi/sfv-tools
+wget https://fordi.github.io/update-repo/update-repo.sh -qO - | bash /dev/stdin install Fordi/sfv-tools
 ```
 
 The latter will clone the repo to /opt/sfv-tools and both will symlink the commands to /usr/local/bin, so to update later:
 
 ```bash
-sudo update-repo https://github.com/Fordi/sfv-tools
+update-repo Fordi/sfv-tools
 ```
 
 ## make-sfv
