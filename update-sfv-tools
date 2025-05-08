@@ -1,0 +1,37 @@
+#!/bin/bash
+if [[ "$0" == "/dev/stdin" || "$(basename "$0")" == "bash" ]]; then
+  SOURCES="/opt/sfv-tools"
+  if [[ -x "$SOURCES" ]]; then
+    cd "$SOURCES";
+    echo "Updating sfv-tools"
+    git pull;
+  else
+    git clone --depth 1 https://github.com/Fordi/sfv-tools "$SOURCES" > /dev/null 2>&1
+  fi
+  cd "$SOURCES"
+  HERE="$SOURCES"
+else
+  HERE="$(dirname "$(realpath "$0")")"
+  cd "$HERE"
+  OWNER="$(stat -c "%U" .git)"
+  if [[ "$OWNER" != "$USER" ]]; then
+    echo "Updating as $OWNER"
+    su "$OWNER" -c "git pull"
+  else
+    git pull
+  fi
+fi
+
+TARGET=${1:-/usr/local/bin}
+
+function install() {
+  local file="$1"; shift;
+  rm "$TARGET/$file" 2>/dev/null
+  echo "Symlinking $HERE/$file to $TARGET/$file"
+  ln -s "$HERE/$file" "$TARGET/$file"
+}
+
+install check-sfv
+install make-sfv
+install update-sfv-tools
+
